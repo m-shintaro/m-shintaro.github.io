@@ -121,7 +121,6 @@ function App() {
           <p className="hero-description">
             I'm a high school researcher passionate about developing <strong>innovative technology</strong> to explore and protect our environment.  From building <em>stratospheric observation systems</em> to underwater drones and satellite technologies, I'm constantly pushing the boundaries of what's possible.
           </p>
-          <a href="https://m-shintaro.github.io/" target="_blank" rel="noopener noreferrer" className="nav-link active">Visit My Portfolio</a>
         </div>
         <div className="scroll-indicator">
           <div className="mouse">
@@ -169,7 +168,7 @@ function App() {
                 <span className="tech-name">MATLAB</span>
               </div>
               <div className="tech-item">
-                <span className="tech-icon">C++</span>
+                <span className="tech-icon">🌐</span>
                 <span className="tech-name">C++</span>
               </div>
               <div className="tech-item">
