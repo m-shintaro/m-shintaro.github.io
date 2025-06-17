@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import './App.css'; // Import the CSS file
+import './App.css';
 
 function App() {
   const aboutSectionRef = useRef(null);
@@ -9,303 +9,269 @@ function App() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (aboutSectionRef.current) {
-        const rect = aboutSectionRef.current.getBoundingClientRect();
-        if (rect.top < window.innerHeight && rect.bottom >= 0) {
-          aboutSectionRef.current.classList.add('in-view');
+      const sections = [
+        aboutSectionRef.current,
+        techStackSectionRef.current,
+        statsSectionRef.current,
+        inspirationsSectionRef.current
+      ];
+
+      sections.forEach(section => {
+        if (section) {
+          const rect = section.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom >= 0) {
+            section.classList.add('in-view');
+          }
         }
-      }
-      if (techStackSectionRef.current) {
-        const rect = techStackSectionRef.current.getBoundingClientRect();
-        if (rect.top < window.innerHeight && rect.bottom >= 0) {
-          techStackSectionRef.current.classList.add('in-view');
-        }
-      }
-      if (statsSectionRef.current) {
-        const rect = statsSectionRef.current.getBoundingClientRect();
-        if (rect.top < window.innerHeight && rect.bottom >= 0) {
-          statsSectionRef.current.classList.add('in-view');
-        }
-      }
-      if (inspirationsSectionRef.current) {
-        const rect = inspirationsSectionRef.current.getBoundingClientRect();
-        if (rect.top < window.innerHeight && rect.bottom >= 0) {
-          inspirationsSectionRef.current.classList.add('in-view');
-        }
-      }
+      });
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Check on initial load
+    handleScroll();
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
-
-  // Custom cursor
-  useEffect(() => {
-    const cursor = document.querySelector('.custom-cursor');
-    const handleMouseMove = (e) => {
-      cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-    };
-    document.addEventListener('mousemove', handleMouseMove);
-    return () => document.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-    // Particles
-  useEffect(() => {
-    const particlesContainer = document.querySelector('.particles-container');
-    const numParticles = 100;
-
-    for (let i = 0; i < numParticles; i++) {
-      const particle = document.createElement('div');
-      particle.classList.add('particle');
-      particle.style.left = `${Math.random() * 100}%`;
-      particle.style.top = `${Math.random() * 100}%`;
-      particle.style.animationDelay = `${Math.random() * 15}s`;  // Vary animation delays
-      particlesContainer.appendChild(particle);
-    }
-  }, []);
-
-  // Loading Screen
-    useEffect(() => {
-      const loader = document.querySelector('.loading-screen');
-      const fill = document.querySelector('.progress-fill');
-
-        // Simulate loading progress (replace with actual loading logic)
-      setTimeout(() => {
-        fill.style.width = '100%';
-        setTimeout(() => {
-            loader.style.opacity = 0; // Fade out
-            setTimeout(() => {
-                loader.style.display = 'none'
-                document.body.style.overflowY = 'auto' // Enable scrolling
-            },500);
-        }, 2000); // Wait for fill animation
-      }, 100);
-    }, []);
-
-
   return (
     <div className="App">
-      <div className="loading-screen">
-        <div className="loader">
-          <div className="loader-text">Loading...</div>
-          <div className="progress-bar">
-            <div className="progress-fill"></div>
-          </div>
-        </div>
-      </div>
-      <div className="custom-cursor"></div>
-      <div className="particles-container"></div>
+      <div className="grid-overlay"></div>
+      
       <nav className="navigation">
-        <div className="nav-logo">Shintaro M.</div>
-        <div className="nav-links">
-          <a href="#about" className="nav-link">About</a>
-          <a href="#tech-stack" className="nav-link">Tech Stack</a>
-          <a href="#stats" className="nav-link">Stats</a>
-          <a href="#inspirations" className="nav-link">Inspirations</a>
+        <div className="nav-container">
+          <div className="nav-logo">SHINTARO M.</div>
+          <div className="nav-links">
+            <a href="#about" className="nav-link">ABOUT</a>
+            <a href="#tech-stack" className="nav-link">TECH</a>
+            <a href="#stats" className="nav-link">STATS</a>
+            <a href="#inspirations" className="nav-link">CONTACT</a>
+          </div>
         </div>
       </nav>
 
       <section className="hero-section">
-        <div className="hero-content">
-          <h1 className="glitch" data-text="Hi, I'm Shintaro Matsumoto!">Hi, I'm Shintaro Matsumoto!</h1>
-          <p className="subtitle">🚀 Innovator & Developer in Robotics, AI, and ROV Engineering</p>
-          <div className="tagline">
-            <h3>Building the Future, One Line of Code at a Time.</h3>
-            <p>(And occasionally launching things into space!)</p>
-          </div>
-          <p className="hero-description">
-            I'm a high school researcher passionate about developing <strong>innovative technology</strong> to explore and protect our environment.  From building <em>stratospheric observation systems</em> to underwater drones and satellite technologies, I'm constantly pushing the boundaries of what's possible.
-          </p>
-        </div>
-        <div className="scroll-indicator">
-          <div className="mouse">
-            <div className="wheel"></div>
-          </div>
-          <div className="scroll-text">Scroll Down</div>
-        </div>
-      </section>
-
-      <section className="about-section" id="about" ref={aboutSectionRef}>
-        <h2 className="section-title">About Me</h2>
-        <p className="section-subtitle">A little bit about what drives me.</p>
-        <div className="about-grid">
-          <div className="about-item">
-          <span className="about-icon">👨‍💻</span>
-            <h4>Passionate Developer</h4>
-            <p>I thrive on turning complex problems into elegant, efficient solutions. I'm always learning new technologies and pushing my coding skills to the next level.</p>
-          </div>
-          <div className="about-item">
-            <span className="about-icon">🔬</span>
-            <h4>Dedicated Researcher</h4>
-            <p>My work focuses on leveraging technology for environmental monitoring and exploration.  I believe in the power of data-driven insights to make a positive impact.</p>
-          </div>
-          <div className="about-item">
-            <span className="about-icon">🚀</span>
-            <h4>Aspiring Innovator</h4>
-            <p>I'm not afraid to think big and tackle ambitious projects.  From the depths of the ocean to the reaches of space, I'm always looking for the next challenge.</p>
+        <div className="hero-container">
+          <div className="hero-content">
+            <h1 className="hero-title">SHINTARO MATSUMOTO</h1>
+            <p className="hero-subtitle">INNOVATOR & DEVELOPER IN ROBOTICS, AI, AND ROV ENGINEERING</p>
+            <p className="hero-description">
+              I'M A HIGH SCHOOL RESEARCHER PASSIONATE ABOUT DEVELOPING INNOVATIVE TECHNOLOGY TO EXPLORE AND PROTECT OUR ENVIRONMENT. FROM BUILDING STRATOSPHERIC OBSERVATION SYSTEMS TO UNDERWATER DRONES AND SATELLITE TECHNOLOGIES, I'M CONSTANTLY PUSHING THE BOUNDARIES OF WHAT'S POSSIBLE.
+            </p>
           </div>
         </div>
       </section>
 
-      <section className="tech-stack-section" id="tech-stack" ref={techStackSectionRef}>
-        <h2 className="section-title">Tech Stack</h2>
-        <p className="section-subtitle">The tools I use to build amazing things.</p>
-        <div className="tech-categories">
-          <div className="tech-category">
-            <h4>Programming Languages</h4>
-            <div className="tech-items">
-              <div className="tech-item">
-                <span className="tech-icon">🐍</span>
-                <span className="tech-name">Python</span>
-              </div>
-              <div className="tech-item">
-                <span className="tech-icon">📊</span>
-                <span className="tech-name">MATLAB</span>
-              </div>
-              <div className="tech-item">
-                <span className="tech-icon">🌐</span>
-                <span className="tech-name">C++</span>
-              </div>
-              <div className="tech-item">
-                <span className="tech-icon">🌐</span>
-                <span className="tech-name">JavaScript</span>
-              </div>
-            </div>
+      {/* Scrolling Band 1 */}
+      <div className="scrolling-band red">
+        <div className="scrolling-text">
+          <span>EXPLORE</span>
+          <span>INNOVATE</span>
+          <span>DISCOVER</span>
+          <span>CREATE</span>
+          <span>EXPLORE</span>
+          <span>INNOVATE</span>
+          <span>DISCOVER</span>
+          <span>CREATE</span>
+        </div>
+      </div>
+
+      <section className="section" id="about" ref={aboutSectionRef}>
+        <div className="section-container">
+          <div className="section-header">
+            <h2 className="section-title">ABOUT ME</h2>
+            <p className="section-subtitle">A LITTLE BIT ABOUT WHAT DRIVES ME.</p>
           </div>
-          <div className="tech-category">
-            <h4>AI / ML</h4>
-            <div className="tech-items">
-              <div className="tech-item">
-                <span className="tech-icon">🤖</span>
-                <span className="tech-name">YOLOv2/v4</span>
-              </div>
-              <div className="tech-item">
-                <span className="tech-icon">🧠</span>
-                <span className="tech-name">Neural Networks</span>
-              </div>
-              <div className="tech-item">
-                <span className="tech-icon">🗣️</span>
-                <span className="tech-name">LLMs</span>
-              </div>
-               <div className="tech-item">
-                <span className="tech-icon">👁️</span>
-                <span className="tech-name">Computer Vision</span>
-              </div>
+          <div className="grid-3">
+            <div className="card">
+              <h3 className="card-title">PASSIONATE DEVELOPER</h3>
+              <p className="card-content">I THRIVE ON TURNING COMPLEX PROBLEMS INTO ELEGANT, EFFICIENT SOLUTIONS. I'M ALWAYS LEARNING NEW TECHNOLOGIES AND PUSHING MY CODING SKILLS TO THE NEXT LEVEL.</p>
             </div>
-          </div>
-          <div className="tech-category">
-            <h4>Hardware</h4>
-            <div className="tech-items">
-              <div className="tech-item">
-                <span className="tech-icon">⚡</span>
-                <span className="tech-name">Arduino</span>
-              </div>
-              <div className="tech-item">
-                <span className="tech-icon">🍓</span>
-                <span className="tech-name">Raspberry Pi</span>
-              </div>
-              <div className="tech-item">
-                <span className="tech-icon">🛠️</span>
-                <span className="tech-name">3D Printing</span>
-              </div>
-                <div className="tech-item">
-                <span className="tech-icon">📐</span>
-                <span className="tech-name">CAD Design</span>
-              </div>
+            <div className="card">
+              <h3 className="card-title">DEDICATED RESEARCHER</h3>
+              <p className="card-content">MY WORK FOCUSES ON LEVERAGING TECHNOLOGY FOR ENVIRONMENTAL MONITORING AND EXPLORATION. I BELIEVE IN THE POWER OF DATA-DRIVEN INSIGHTS TO MAKE A POSITIVE IMPACT.</p>
             </div>
-          </div>
-          <div className="tech-category">
-            <h4>Data Analysis</h4>
-            <div className="tech-items">
-              <div className="tech-item">
-                <span className="tech-icon">📈</span>
-                <span className="tech-name">Signal Processing</span>
-              </div>
-              <div className="tech-item">
-                <span className="tech-icon">🌍</span>
-                <span className="tech-name">Environmental Data</span>
-              </div>
-              <div className="tech-item">
-                <span className="tech-icon">📍</span>
-                <span className="tech-name">GPS/IMU</span>
-              </div>
+            <div className="card">
+              <h3 className="card-title">ASPIRING INNOVATOR</h3>
+              <p className="card-content">I'M NOT AFRAID TO THINK BIG AND TACKLE AMBITIOUS PROJECTS. FROM THE DEPTHS OF THE OCEAN TO THE REACHES OF SPACE, I'M ALWAYS LOOKING FOR THE NEXT CHALLENGE.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="stats-section" id="stats" ref={statsSectionRef}>
-        <h2 className="section-title">Stats & Achievements</h2>
-        <p className="section-subtitle">Numbers tell a story. Here's mine.</p>
-        <div className="stats-container">
-          <div className="github-stats">
-            <a href="https://github.com/m-shintaro" target="_blank" rel="noopener noreferrer">
-              <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=m-shintaro&theme=transparent" alt="GitHub Stats" />
-            </a>
-            <p className="stats-disclaimer">Note: These stats are a snapshot and may not reflect all contributions.</p>
+      {/* Scrolling Band 2 */}
+      <div className="scrolling-band black">
+        <div className="scrolling-text reverse">
+          <span>ROBOTICS</span>
+          <span>AI & ML</span>
+          <span>UNDERWATER</span>
+          <span>AEROSPACE</span>
+          <span>ROBOTICS</span>
+          <span>AI & ML</span>
+          <span>UNDERWATER</span>
+          <span>AEROSPACE</span>
+        </div>
+      </div>
+
+      <section className="section tech-section" id="tech-stack" ref={techStackSectionRef}>
+        <div className="section-container">
+          <div className="section-header">
+            <h2 className="section-title">TECH STACK</h2>
+            <p className="section-subtitle">THE TOOLS I USE TO BUILD AMAZING THINGS.</p>
           </div>
-          <div className="stat-cards">
+          <div className="tech-grid">
+            <div className="tech-category">
+              <h3 className="tech-category-title">PROGRAMMING LANGUAGES</h3>
+              <ul className="tech-list">
+                <li className="tech-item">PYTHON</li>
+                <li className="tech-item">MATLAB</li>
+                <li className="tech-item">C++</li>
+                <li className="tech-item">JAVASCRIPT</li>
+                <li className="tech-item">REACT</li>
+                <li className="tech-item">NODE.JS</li>
+              </ul>
+            </div>
+            <div className="tech-category">
+              <h3 className="tech-category-title">AI / ML</h3>
+              <ul className="tech-list">
+                <li className="tech-item">YOLOV2/V4</li>
+                <li className="tech-item">NEURAL NETWORKS</li>
+                <li className="tech-item">LLMS</li>
+                <li className="tech-item">COMPUTER VISION</li>
+                <li className="tech-item">TENSORFLOW</li>
+                <li className="tech-item">PYTORCH</li>
+              </ul>
+            </div>
+            <div className="tech-category">
+              <h3 className="tech-category-title">HARDWARE</h3>
+              <ul className="tech-list">
+                <li className="tech-item">ARDUINO</li>
+                <li className="tech-item">RASPBERRY PI</li>
+                <li className="tech-item">3D PRINTING</li>
+                <li className="tech-item">CAD DESIGN</li>
+                <li className="tech-item">PCB DESIGN</li>
+                <li className="tech-item">SENSORS</li>
+              </ul>
+            </div>
+            <div className="tech-category">
+              <h3 className="tech-category-title">DATA ANALYSIS</h3>
+              <ul className="tech-list">
+                <li className="tech-item">SIGNAL PROCESSING</li>
+                <li className="tech-item">ENVIRONMENTAL DATA</li>
+                <li className="tech-item">GPS/IMU</li>
+                <li className="tech-item">SATELLITE TECH</li>
+                <li className="tech-item">DATA VISUALIZATION</li>
+                <li className="tech-item">STATISTICAL ANALYSIS</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Scrolling Band 3 */}
+      <div className="scrolling-band red">
+        <div className="scrolling-text">
+          <span>AWARDS</span>
+          <span>ACHIEVEMENTS</span>
+          <span>RECOGNITION</span>
+          <span>SUCCESS</span>
+          <span>AWARDS</span>
+          <span>ACHIEVEMENTS</span>
+          <span>RECOGNITION</span>
+          <span>SUCCESS</span>
+        </div>
+      </div>
+
+      <section className="section stats-section" id="stats" ref={statsSectionRef}>
+        <div className="section-container">
+          <div className="section-header">
+            <h2 className="section-title">ACHIEVEMENTS</h2>
+            <p className="section-subtitle">NUMBERS TELL A STORY. HERE'S MINE.</p>
+          </div>
+          <div className="stats-grid">
             <div className="stat-card">
-              <div className="stat-value">1st</div>
-              <div className="stat-label">WNI WxBunka Award</div>
+              <div className="stat-value">1ST</div>
+              <div className="stat-label">WNI WXBUNKA AWARD</div>
             </div>
             <div className="stat-card">
-              <div className="stat-value">1st</div>
+              <div className="stat-value">1ST</div>
               <div className="stat-label">MATLAB EXPO 2023</div>
             </div>
             <div className="stat-card">
-              <div className="stat-value">1st</div>
+              <div className="stat-value">1ST</div>
               <div className="stat-label">MATLAB EXPO 2022</div>
             </div>
             <div className="stat-card">
-              <div className="stat-value">2nd</div>
+              <div className="stat-value">2ND</div>
               <div className="stat-label">MATLAB EXPO 2024</div>
             </div>
-              <div className="stat-card">
+            <div className="stat-card">
               <div className="stat-value">30+</div>
-              <div className="stat-label">km Altitude Achieved</div>
+              <div className="stat-label">KM ALTITUDE ACHIEVED</div>
+            </div>
+            <div className="stat-card">
+              <div className="stat-value">50+</div>
+              <div className="stat-label">PROJECTS COMPLETED</div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="inspirations-section" id="inspirations" ref={inspirationsSectionRef}>
-          <h2 className="section-title">Inspirations</h2>
-          <div className="inspirations-container">
-            <p>
-                My work is deeply inspired by the beauty and complexity of the natural world, and the potential of technology to help us understand and protect it.  From the intricate ecosystems of coral reefs to the vastness of space, I believe that exploration and innovation go hand in hand. I'm also a huge fan of open-source collaboration and the power of sharing knowledge to accelerate scientific discovery. (And yes, I've been known to quote John Muir... with a few modifications!)
-            </p>
-            </div>
-          <div className="cosmic-background">
-              <div className="star star1"></div>
-              <div className="star star2"></div>
-              <div className="star star3"></div>
-              <div className="planet"></div>
-              <div className="satellite"></div>
+      {/* Scrolling Band 4 */}
+      <div className="scrolling-band black">
+        <div className="scrolling-text reverse">
+          <span>FUTURE</span>
+          <span>INNOVATION</span>
+          <span>TECHNOLOGY</span>
+          <span>SCIENCE</span>
+          <span>FUTURE</span>
+          <span>INNOVATION</span>
+          <span>TECHNOLOGY</span>
+          <span>SCIENCE</span>
+        </div>
+      </div>
+
+      <section className="section" id="inspirations" ref={inspirationsSectionRef}>
+        <div className="section-container">
+          <div className="section-header">
+            <h2 className="section-title">INSPIRATIONS</h2>
           </div>
+          <div className="grid-2">
+            <div>
+              <p className="hero-description">
+                MY WORK IS DEEPLY INSPIRED BY THE BEAUTY AND COMPLEXITY OF THE NATURAL WORLD, AND THE POTENTIAL OF TECHNOLOGY TO HELP US UNDERSTAND AND PROTECT IT. FROM THE INTRICATE ECOSYSTEMS OF CORAL REEFS TO THE VASTNESS OF SPACE, I BELIEVE THAT EXPLORATION AND INNOVATION GO HAND IN HAND.
+              </p>
+            </div>
+            <div>
+              <p className="hero-description">
+                I'M ALSO A HUGE FAN OF OPEN-SOURCE COLLABORATION AND THE POWER OF SHARING KNOWLEDGE TO ACCELERATE SCIENTIFIC DISCOVERY. THE FUTURE BELONGS TO THOSE WHO DARE TO DREAM BIG AND WORK HARD TO MAKE THOSE DREAMS REALITY.
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
 
       <footer className="footer">
-        <p>
-          "The ocean is calling and I must go" — John Muir (adapted)
-        </p>
-        <p className="disclaimer">
-          This website was built with React and a healthy dose of caffeine.
-        </p>
-        <div className="footer-links">
-          <a href="https://github.com/m-shintaro" target="_blank" rel="noopener noreferrer" className="footer-link">GitHub</a>
-          <a href="https://www.linkedin.com/in/shintaro-matsumoto-598b3a227/" target="_blank" rel="noopener noreferrer" className="footer-link">LinkedIn</a>
-          <a href="https://m-shintaro.github.io/" target="_blank" rel="noopener noreferrer" className="footer-link">Portfolio</a>
+        <div className="footer-container">
+          <div className="footer-grid">
+            <div>
+              <p className="footer-quote">
+                "THE OCEAN IS CALLING AND I MUST GO" — JOHN MUIR (ADAPTED)
+              </p>
+            </div>
+            <div className="footer-links">
+              <a href="https://github.com/m-shintaro" target="_blank" rel="noopener noreferrer" className="footer-link">GITHUB</a>
+              <a href="https://www.linkedin.com/in/shintaro-matsumoto-598b3a227/" target="_blank" rel="noopener noreferrer" className="footer-link">LINKEDIN</a>
+              <a href="https://m-shintaro.github.io/" target="_blank" rel="noopener noreferrer" className="footer-link">PORTFOLIO</a>
+            </div>
+          </div>
+          <div className="footer-bottom">
+            <p>© {new Date().getFullYear()} SHINTARO MATSUMOTO. ALL RIGHTS RESERVED.</p>
+          </div>
         </div>
-        <p className="copyright">
-          © {new Date().getFullYear()} Shintaro Matsumoto. All rights reserved.
-        </p>
       </footer>
+
+      <div className="scroll-indicator">↓</div>
     </div>
   );
 }
