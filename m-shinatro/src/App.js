@@ -73,6 +73,18 @@ function App() {
           <span>INNOVATE</span>
           <span>DISCOVER</span>
           <span>CREATE</span>
+          <span>EXPLORE</span>
+          <span>INNOVATE</span>
+          <span>DISCOVER</span>
+          <span>CREATE</span>
+          <span>EXPLORE</span>
+          <span>INNOVATE</span>
+          <span>DISCOVER</span>
+          <span>CREATE</span>
+          <span>EXPLORE</span>
+          <span>INNOVATE</span>
+          <span>DISCOVER</span>
+          <span>CREATE</span>
         </div>
       </div>
 
@@ -102,6 +114,10 @@ function App() {
       {/* Scrolling Band 2 */}
       <div className="scrolling-band black">
         <div className="scrolling-text reverse">
+          <span>ROBOTICS</span>
+          <span>AI & ML</span>
+          <span>UNDERWATER</span>
+          <span>AEROSPACE</span>
           <span>ROBOTICS</span>
           <span>AI & ML</span>
           <span>UNDERWATER</span>
@@ -179,6 +195,18 @@ function App() {
           <span>ACHIEVEMENTS</span>
           <span>RECOGNITION</span>
           <span>SUCCESS</span>
+          <span>AWARDS</span>
+          <span>ACHIEVEMENTS</span>
+          <span>RECOGNITION</span>
+          <span>SUCCESS</span>
+          <span>AWARDS</span>
+          <span>ACHIEVEMENTS</span>
+          <span>RECOGNITION</span>
+          <span>SUCCESS</span>
+          <span>AWARDS</span>
+          <span>ACHIEVEMENTS</span>
+          <span>RECOGNITION</span>
+          <span>SUCCESS</span>
         </div>
       </div>
 
@@ -220,6 +248,10 @@ function App() {
       {/* Scrolling Band 4 */}
       <div className="scrolling-band black">
         <div className="scrolling-text reverse">
+          <span>FUTURE</span>
+          <span>INNOVATION</span>
+          <span>TECHNOLOGY</span>
+          <span>SCIENCE</span>
           <span>FUTURE</span>
           <span>INNOVATION</span>
           <span>TECHNOLOGY</span>
