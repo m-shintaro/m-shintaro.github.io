@@ -216,7 +216,7 @@ body {
 }
 
 .scrolling-text.reverse {
-  animation: scroll-right 35s linear infinite;
+  animation: scroll-right 80s linear infinite;
   will-change: transform;
   white-space: nowrap;
 }
@@ -475,7 +475,7 @@ body {
 
 @keyframes scroll-right {
   0% {
-    transform: translateX(0%);
+    transform: translateX(-100%);
   }
   100% {
     transform: translateX(100%);

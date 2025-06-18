@@ -126,6 +126,26 @@ function App() {
           <span>AI & ML</span>
           <span>UNDERWATER</span>
           <span>AEROSPACE</span>
+          <span>ROBOTICS</span>
+          <span>AI & ML</span>
+          <span>UNDERWATER</span>
+          <span>AEROSPACE</span>
+          <span>ROBOTICS</span>
+          <span>AI & ML</span>
+          <span>UNDERWATER</span>
+          <span>AEROSPACE</span>
+          <span>ROBOTICS</span>
+          <span>AI & ML</span>
+          <span>UNDERWATER</span>
+          <span>AEROSPACE</span>
+          <span>ROBOTICS</span>
+          <span>AI & ML</span>
+          <span>UNDERWATER</span>
+          <span>AEROSPACE</span>
+          <span>ROBOTICS</span>
+          <span>AI & ML</span>
+          <span>UNDERWATER</span>
+          <span>AEROSPACE</span>
         </div>
       </div>
 
@@ -248,6 +268,26 @@ function App() {
       {/* Scrolling Band 4 */}
       <div className="scrolling-band black">
         <div className="scrolling-text reverse">
+          <span>FUTURE</span>
+          <span>INNOVATION</span>
+          <span>TECHNOLOGY</span>
+          <span>SCIENCE</span>
+          <span>FUTURE</span>
+          <span>INNOVATION</span>
+          <span>TECHNOLOGY</span>
+          <span>SCIENCE</span>
+          <span>FUTURE</span>
+          <span>INNOVATION</span>
+          <span>TECHNOLOGY</span>
+          <span>SCIENCE</span>
+          <span>FUTURE</span>
+          <span>INNOVATION</span>
+          <span>TECHNOLOGY</span>
+          <span>SCIENCE</span>
+          <span>FUTURE</span>
+          <span>INNOVATION</span>
+          <span>TECHNOLOGY</span>
+          <span>SCIENCE</span>
           <span>FUTURE</span>
           <span>INNOVATION</span>
           <span>TECHNOLOGY</span>

@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 This is a GitHub Pages personal portfolio website for Shintaro Matsumoto, showcasing work in robotics, AI, and ROV engineering. The project consists of:
 
 - **Root directory**: Contains the main GitHub Pages configuration
-- **m-shinatra/**: The main React application directory with the portfolio website
+- **m-shinatro/**: The main React application directory with the portfolio website
 
 ## Development Commands
 
@@ -44,10 +44,12 @@ The site is configured for GitHub Pages deployment with:
 - **Inspirations Section**: Animated cosmic background elements
 
 ### Styling Approach
-- CSS-in-JS approach with separate CSS files
-- Animation-heavy design with scroll-triggered effects
-- Custom cursor and particle system implementations
-- Responsive grid layouts throughout
+- **CSS Variables**: Uses CSS custom properties for consistent theming (colors, fonts, spacing)
+- **Grid System**: Fixed grid overlay with configurable grid size for visual consistency
+- **Scroll Animations**: Sections use `in-view` class toggling based on scroll position
+- **Scrolling Bands**: Animated horizontal text bands between sections with different directions
+- **Typography System**: Utility classes for font sizes (.text-xs to .text-9xl) and weights
+- **Modern Design**: Inspired by elevatormusic.live with clean, minimalist aesthetics
 
 ## Technology Stack
 
@@ -58,7 +60,18 @@ The site is configured for GitHub Pages deployment with:
 
 ## Development Notes
 
-- The application uses extensive `useEffect` hooks for DOM manipulation and animations
-- Scroll event listeners are properly cleaned up to prevent memory leaks
-- External GitHub stats are embedded via vercel.app API
-- All animations have configurable delays and timing
+### Animation Architecture
+- **Scroll Detection**: Uses `useEffect` with scroll event listeners to detect when sections enter viewport
+- **Ref Management**: Each major section has its own `useRef` for precise scroll position tracking
+- **Memory Management**: Scroll event listeners are properly cleaned up in useEffect return function
+- **CSS Classes**: Animations triggered by adding/removing `.in-view` class to sections
+
+### Performance Considerations
+- Single-page application with all content loaded at once for smooth scrolling experience
+- CSS animations preferred over JavaScript animations for better performance
+- Grid overlay uses CSS gradients instead of actual DOM elements for minimal impact
+
+### Content Structure
+- **Scrolling Bands**: Four animated text bands with different themes (EXPLORE/INNOVATE, ROBOTICS/AI, AWARDS/ACHIEVEMENTS, FUTURE/INNOVATION)
+- **Section Transitions**: Each section has entrance animations triggered by scroll position
+- **Footer Links**: External links to GitHub, LinkedIn, and portfolio with proper target="_blank" attributes
